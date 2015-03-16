@@ -1,0 +1,32 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="FamilyWizardConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=SBYRD-DELL\SQLEXPRESS;Initial Catalog=FamilyWizard;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=SBYRD-DELL\SQLEXPRESS;Initial Catalog=FamilyWizard;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="DefaultPerson" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">28</Value>
+    </Setting>
+    <Setting Name="FamilyWizardMySqlConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Database=familywizard;Data Source=localhost;User Id=sbyrd;Password=FallsChurch1986!</Value>
+    </Setting>
+    <Setting Name="FamilyWizardMySqlConnectionStringHome" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Database=familywizard;Data Source=192.168.1.50;User Id=root;Password=byrdman1</Value>
+    </Setting>
+    <Setting Name="CurrentPersonIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">113</Value>
+    </Setting>
+    <Setting Name="CurrentEventIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">269</Value>
+    </Setting>
+    <Setting Name="CurrentMarriageIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
