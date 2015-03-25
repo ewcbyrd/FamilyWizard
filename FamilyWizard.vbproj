@@ -90,12 +90,15 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\DataFileDAO.vb" />
     <Compile Include="DataAccess\EventDAO.vb" />
+    <Compile Include="DataAccess\IDataFileDAO.vb" />
     <Compile Include="DataAccess\IEventDAO.vb" />
     <Compile Include="DataAccess\IMarriageDAO.vb" />
     <Compile Include="DataAccess\IPersonDAO.vb" />
     <Compile Include="DataAccess\MarriageDAO.vb" />
     <Compile Include="DataAccess\PersonDAO.vb" />
+    <Compile Include="Domain\DataFileDescriptor.vb" />
     <Compile Include="Domain\EventFile.vb" />
     <Compile Include="Domain\MarriageEvent.vb" />
     <Compile Include="Domain\MarriageFile.vb" />
