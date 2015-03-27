@@ -1,4 +1,6 @@
-﻿Public Class frmMainForm
+﻿Imports System.IO
+
+Public Class frmMainForm
 
     Private Property FocusPerson As Person
 
@@ -7,6 +9,7 @@
     Private marriageIndex As Integer ' The marriage index for the focus person and spouse
     Private ps As New PersonService
     Private es As New EventService
+    Private dfs As New DataFileService
     Private currentText As String ' The current value of the individual text box with focus
 
     Public WriteOnly Property PIndex() As Integer
@@ -14,6 +17,8 @@
             personIndex = value
         End Set
     End Property
+
+    Public Shared Property DataFile As New DataFileDescriptor
 
     Public Sub LoadNameList(list As Dictionary(Of Integer, Person))
 
@@ -186,7 +191,7 @@
 
                 Dim marriage As New MarriageEvent
 
-                marriage = ps.GetMarriage(focusPerson.Id, spouse.Id)
+                marriage = ps.GetMarriage(FocusPerson.Id, spouse.Id)
 
                 txtMarriageDate.Text = marriage.MarriageDate.ToString
                 txtMarriagePlace.Text = marriage.MarriageLocation
@@ -561,7 +566,7 @@
 
                 lblIndex.Text = "Index:  " & ps.GetPersonCount
 
-            End If
+           End If
         End If
     End Sub
 
@@ -946,9 +951,14 @@
     End Sub
 
     Private Sub Timer1_Tick_1(sender As Object, e As EventArgs) Handles Timer1.Tick, Me.FormClosed
-        ps.WritePersonFile("C:\Users\Scott Byrd\OneDrive\Visual Basic\HelloWorld\persons.dat")
-        es.WriteFile("C:\Users\Scott Byrd\OneDrive\Visual Basic\HelloWorld\events.dat")
-        ps.WriteMarriageFile("C:\Users\Scott Byrd\OneDrive\Visual Basic\HelloWorld\marriages.dat")
+
+        Dim filePrefix As String = DataFile.PathName & "\" & DataFile.FileName & "_"
+
+        ps.WritePersonFile(filePrefix & "persons.dat")
+        es.WriteFile(filePrefix & "events.dat")
+        ps.WriteMarriageFile(filePrefix & "marriages.dat")
+        dfs.Write(DataFile)
+
     End Sub
 
     Sub UpdateChildrenList(fatherId As Integer, motherId As Integer)
@@ -1121,5 +1131,64 @@
 
     Private Sub frmMainForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         lblIndex.Text = "Index:  " & ps.GetPersonCount
+    End Sub
+
+    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
+
+
+    End Sub
+
+    Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
+
+        OpenFileDialog1.Filter = "fwz files (*.fwz)|*.fwz"
+
+        If OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+
+            DataFile = dfs.Read(OpenFileDialog1.FileName)
+
+            Dim prefix As String = DataFile.PathName & "\" & DataFile.FileName & "_"
+
+            Me.Text = "Family Wizard - " & DataFile.FileName
+
+            es.LoadEventList(prefix & "events.dat")
+            ps.LoadPersonList(prefix & "persons.dat")
+            ps.LoadMarriageList(prefix & "marriages.dat")
+
+            PIndex = DataFile.DefaultPersonIndex
+
+            If DataFile.DefaultPersonIndex > 0 Then
+                SetFocusPerson(DataFile.DefaultPersonIndex)
+            End If
+
+            LoadNameList(ps.GetPersonList)
+
+            lblIndex.Text = "Index: " & ps.GetPersonCount
+
+        End If
+
+    End Sub
+
+    Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
+
+        SaveFileDialog1.Filter = "fwz files (*.fwz)|*.fwz"
+
+        If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            Dim fi As New FileInfo(SaveFileDialog1.FileName)
+
+            DataFile.FileName = Replace(fi.Name, ".fwz", "")
+            DataFile.PathName = fi.DirectoryName
+
+            Try
+                dfs.Write(DataFile)
+
+                Me.Text = "Family Wizard - " & DataFile.FileName
+
+            Catch ex As Exception
+
+            End Try
+
+
+        End If
     End Sub
 End Class

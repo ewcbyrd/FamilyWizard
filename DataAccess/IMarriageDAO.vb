@@ -6,7 +6,7 @@
     Sub UpdateMarriageLocation(location As String, marriageId As Integer)
     Function GetSpouses(person As Person) As ArrayList
     Function GetMarriage(id As Integer) As MarriageEvent
-    Sub LoadMarriages()
+    Sub LoadMarriages(fn As String)
     Sub WriteFile(filename As String)
     Sub DeleteMarriage(marriageId As Integer)
     Function GetMarriagesForIndividual(personId As Integer) As ArrayList

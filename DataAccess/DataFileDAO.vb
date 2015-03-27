@@ -24,12 +24,11 @@ Public Class DataFileDAO
 
         Dim filename As String
 
-        filename = dfd.PathName + dfd.FileName
+        filename = dfd.PathName & "\" & dfd.FileName & ".fwz"
 
         Using output As New FileStream(filename, FileMode.Create)
             formatter.Serialize(output, dfd)
         End Using
-
 
     End Sub
 End Class

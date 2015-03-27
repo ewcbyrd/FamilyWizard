@@ -153,6 +153,7 @@
     <Compile Include="Presentation\PersonPicker.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Service\DataFileService.vb" />
     <Compile Include="Service\DateParser.vb" />
     <Compile Include="Service\EventService.vb" />
     <Compile Include="Service\NameParser.vb" />

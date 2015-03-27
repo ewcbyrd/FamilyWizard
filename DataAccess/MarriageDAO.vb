@@ -18,14 +18,13 @@ Public Class MarriageDAO
 
     Public Function AddMarriage(marriage As MarriageEvent) As Integer Implements IMarriageDAO.AddMarriage
 
-        Dim id As Integer = My.Settings.CurrentMarriageIndex
+        Dim id As Integer = frmMainForm.DataFile.CurrentMarriageIndex
 
         marriage.Id = id
 
         _marriageList.Add(id, marriage)
 
-        My.Settings.CurrentMarriageIndex += 1
-        My.Settings.Save()
+        frmMainForm.DataFile.CurrentMarriageIndex += 1
 
         Return id
 
@@ -87,13 +86,13 @@ Public Class MarriageDAO
 
     End Function
 
-    Public Sub LoadMarriages() Implements IMarriageDAO.LoadMarriages
+    Public Sub LoadMarriages(fn As String) Implements IMarriageDAO.LoadMarriages
 
         Dim formatter As New BinaryFormatter()
 
         Dim mf As MarriageFile
 
-        Using input As New FileStream("C:\Users\Scott Byrd\OneDrive\Visual Basic\HelloWorld\marriages.dat", FileMode.Open)
+        Using input As New FileStream(fn, FileMode.Open)
             mf = CType(formatter.Deserialize(input), MarriageFile)
         End Using
 

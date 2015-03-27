@@ -5,7 +5,7 @@ Imports System.IO
 Public Class PersonDAO
     Implements IPersonDAO
 
-    Private Shared Property Persons As Dictionary(Of Integer, Person)
+    Private Shared Property Persons As New Dictionary(Of Integer, Person)
     
     Public Function GetPersonById(id As Integer) As Person Implements IPersonDAO.GetPersonById
 
@@ -14,12 +14,16 @@ Public Class PersonDAO
     End Function
 
     Public Function GetPersonList() As Dictionary(Of Integer, Person) Implements IPersonDAO.GetPersonList
+        Return Persons
+    End Function
+
+    Public Function GetPersonList(fn As String) As Dictionary(Of Integer, Person) Implements IPersonDAO.GetPersonList
 
         Dim formatter As New BinaryFormatter()
 
         Dim pf As PersonFile
 
-        Using input As New FileStream("C:\Users\Scott Byrd\OneDrive\Visual Basic\HelloWorld\persons.dat", FileMode.Open)
+        Using input As New FileStream(fn, FileMode.Open)
             pf = CType(formatter.Deserialize(input), PersonFile)
         End Using
 
@@ -29,15 +33,17 @@ Public Class PersonDAO
 
     Public Function AddPerson(person As Person) As Integer Implements IPersonDAO.AddPerson
 
-        Dim id As Integer = My.Settings.CurrentPersonIndex
+        Dim id As Integer = frmMainForm.DataFile.CurrentPersonIndex
 
         person.Id = id
 
         Persons.Add(id, person)
 
-        My.Settings.CurrentPersonIndex += 1
+        If Persons.Count = 1 Then
+            frmMainForm.DataFile.DefaultPersonIndex = person.Id
+        End If
 
-        My.Settings.Save()
+        frmMainForm.DataFile.CurrentPersonIndex += 1
 
         Return id
 
@@ -84,8 +90,8 @@ Public Class PersonDAO
 
     End Function
 
-    Public Sub LoadPersonList() Implements IPersonDAO.LoadPersonList
-        Persons = GetPersonList()
+    Public Sub LoadPersonList(fn As String) Implements IPersonDAO.LoadPersonList
+        Persons = GetPersonList(fn)
     End Sub
 
     Public Sub UpdatePersonsBirth(eventDate As EventDate, personId As Integer) Implements IPersonDAO.UpdatePersonsBirth
@@ -114,7 +120,7 @@ Public Class PersonDAO
     Public Sub WriteFile(filename As String) Implements IPersonDAO.WriteFile
 
         Dim formatter As New BinaryFormatter()
-        Dim pf As New PersonFile(_persons)
+        Dim pf As New PersonFile(_Persons)
 
         Using output As New FileStream(filename, FileMode.Create)
             formatter.Serialize(output, pf)

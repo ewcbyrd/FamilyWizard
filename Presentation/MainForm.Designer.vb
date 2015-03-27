@@ -93,7 +93,10 @@ Partial Class frmMainForm
         Me.lblName = New System.Windows.Forms.Label()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PersonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -114,6 +117,8 @@ Partial Class frmMainForm
         Me.cmsFatherSpouses = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.cmsMotherSpouses = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -544,9 +549,8 @@ Partial Class frmMainForm
         Me.lblMarriage.AutoSize = True
         Me.lblMarriage.Location = New System.Drawing.Point(69, 9)
         Me.lblMarriage.Name = "lblMarriage"
-        Me.lblMarriage.Size = New System.Drawing.Size(45, 13)
+        Me.lblMarriage.Size = New System.Drawing.Size(0, 13)
         Me.lblMarriage.TabIndex = 8
-        Me.lblMarriage.Text = "Label11"
         '
         'Label10
         '
@@ -591,18 +595,16 @@ Partial Class frmMainForm
         Me.lblMotherDeathLocation.AutoSize = True
         Me.lblMotherDeathLocation.Location = New System.Drawing.Point(46, 70)
         Me.lblMotherDeathLocation.Name = "lblMotherDeathLocation"
-        Me.lblMotherDeathLocation.Size = New System.Drawing.Size(39, 13)
+        Me.lblMotherDeathLocation.Size = New System.Drawing.Size(0, 13)
         Me.lblMotherDeathLocation.TabIndex = 7
-        Me.lblMotherDeathLocation.Text = "Label8"
         '
         'lblMotherDeathDate
         '
         Me.lblMotherDeathDate.AutoSize = True
         Me.lblMotherDeathDate.Location = New System.Drawing.Point(46, 54)
         Me.lblMotherDeathDate.Name = "lblMotherDeathDate"
-        Me.lblMotherDeathDate.Size = New System.Drawing.Size(39, 13)
+        Me.lblMotherDeathDate.Size = New System.Drawing.Size(0, 13)
         Me.lblMotherDeathDate.TabIndex = 6
-        Me.lblMotherDeathDate.Text = "Label8"
         '
         'Label9
         '
@@ -619,18 +621,16 @@ Partial Class frmMainForm
         Me.lblMotherBirthLocation.AutoSize = True
         Me.lblMotherBirthLocation.Location = New System.Drawing.Point(46, 38)
         Me.lblMotherBirthLocation.Name = "lblMotherBirthLocation"
-        Me.lblMotherBirthLocation.Size = New System.Drawing.Size(39, 13)
+        Me.lblMotherBirthLocation.Size = New System.Drawing.Size(0, 13)
         Me.lblMotherBirthLocation.TabIndex = 4
-        Me.lblMotherBirthLocation.Text = "Label9"
         '
         'lblMotherBirthDate
         '
         Me.lblMotherBirthDate.AutoSize = True
         Me.lblMotherBirthDate.Location = New System.Drawing.Point(46, 22)
         Me.lblMotherBirthDate.Name = "lblMotherBirthDate"
-        Me.lblMotherBirthDate.Size = New System.Drawing.Size(39, 13)
+        Me.lblMotherBirthDate.Size = New System.Drawing.Size(0, 13)
         Me.lblMotherBirthDate.TabIndex = 3
-        Me.lblMotherBirthDate.Text = "Label8"
         '
         'Label7
         '
@@ -649,7 +649,6 @@ Partial Class frmMainForm
         Me.lblMother.Name = "lblMother"
         Me.lblMother.Size = New System.Drawing.Size(247, 19)
         Me.lblMother.TabIndex = 1
-        Me.lblMother.Text = "Label6"
         '
         'pnlFather
         '
@@ -684,18 +683,16 @@ Partial Class frmMainForm
         Me.lblFatherDeathLocation.AutoSize = True
         Me.lblFatherDeathLocation.Location = New System.Drawing.Point(46, 70)
         Me.lblFatherDeathLocation.Name = "lblFatherDeathLocation"
-        Me.lblFatherDeathLocation.Size = New System.Drawing.Size(39, 13)
+        Me.lblFatherDeathLocation.Size = New System.Drawing.Size(0, 13)
         Me.lblFatherDeathLocation.TabIndex = 6
-        Me.lblFatherDeathLocation.Text = "Label8"
         '
         'lblFatherDeathDate
         '
         Me.lblFatherDeathDate.AutoSize = True
         Me.lblFatherDeathDate.Location = New System.Drawing.Point(46, 54)
         Me.lblFatherDeathDate.Name = "lblFatherDeathDate"
-        Me.lblFatherDeathDate.Size = New System.Drawing.Size(39, 13)
+        Me.lblFatherDeathDate.Size = New System.Drawing.Size(0, 13)
         Me.lblFatherDeathDate.TabIndex = 5
-        Me.lblFatherDeathDate.Text = "Label8"
         '
         'Label8
         '
@@ -712,18 +709,16 @@ Partial Class frmMainForm
         Me.lblFatherBirthLocation.AutoSize = True
         Me.lblFatherBirthLocation.Location = New System.Drawing.Point(46, 38)
         Me.lblFatherBirthLocation.Name = "lblFatherBirthLocation"
-        Me.lblFatherBirthLocation.Size = New System.Drawing.Size(39, 13)
+        Me.lblFatherBirthLocation.Size = New System.Drawing.Size(0, 13)
         Me.lblFatherBirthLocation.TabIndex = 3
-        Me.lblFatherBirthLocation.Text = "Label8"
         '
         'lblFatherBirthDate
         '
         Me.lblFatherBirthDate.AutoSize = True
         Me.lblFatherBirthDate.Location = New System.Drawing.Point(46, 22)
         Me.lblFatherBirthDate.Name = "lblFatherBirthDate"
-        Me.lblFatherBirthDate.Size = New System.Drawing.Size(39, 13)
+        Me.lblFatherBirthDate.Size = New System.Drawing.Size(0, 13)
         Me.lblFatherBirthDate.TabIndex = 2
-        Me.lblFatherBirthDate.Text = "Label8"
         '
         'Label6
         '
@@ -742,7 +737,6 @@ Partial Class frmMainForm
         Me.lblFather.Name = "lblFather"
         Me.lblFather.Size = New System.Drawing.Size(247, 19)
         Me.lblFather.TabIndex = 0
-        Me.lblFather.Text = "Label6"
         '
         'txtMarriagePlace
         '
@@ -889,7 +883,6 @@ Partial Class frmMainForm
         Me.lblName.Name = "lblName"
         Me.lblName.Size = New System.Drawing.Size(237, 63)
         Me.lblName.TabIndex = 0
-        Me.lblName.Text = "Label1"
         Me.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'MenuStrip1
@@ -903,16 +896,34 @@ Partial Class frmMainForm
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.OpenToolStripMenuItem, Me.CloseToolStripMenuItem, Me.SaveToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "&File"
         '
-        'ExitToolStripMenuItem
+        'NewToolStripMenuItem
         '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
-        Me.ExitToolStripMenuItem.Text = "E&xit"
+        Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.NewToolStripMenuItem.Text = "New"
+        '
+        'OpenToolStripMenuItem
+        '
+        Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.OpenToolStripMenuItem.Text = "Open"
+        '
+        'CloseToolStripMenuItem
+        '
+        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.CloseToolStripMenuItem.Text = "Close"
+        '
+        'SaveToolStripMenuItem
+        '
+        Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.SaveToolStripMenuItem.Text = "Save"
         '
         'EditToolStripMenuItem
         '
@@ -937,7 +948,7 @@ Partial Class frmMainForm
         '
         Me.AddPersonToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddFatherToolStripMenuItem, Me.AddMotherToolStripMenuItem, Me.AddSpouseToolStripMenuItem, Me.AddChildToolStripMenuItem, Me.AddUnrelatedPersonToolStripMenuItem})
         Me.AddPersonToolStripMenuItem.Name = "AddPersonToolStripMenuItem"
-        Me.AddPersonToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.AddPersonToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AddPersonToolStripMenuItem.Text = "Add Person"
         '
         'AddFatherToolStripMenuItem
@@ -974,7 +985,7 @@ Partial Class frmMainForm
         '
         Me.AttachPersonToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AttachFatherToolStripMenuItem, Me.AttachMotherToolStripMenuItem, Me.AttachSpouseToolStripMenuItem, Me.AttachChildToolStripMenuItem})
         Me.AttachPersonToolStripMenuItem.Name = "AttachPersonToolStripMenuItem"
-        Me.AttachPersonToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.AttachPersonToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AttachPersonToolStripMenuItem.Text = "Attach Person"
         '
         'AttachFatherToolStripMenuItem
@@ -1004,7 +1015,7 @@ Partial Class frmMainForm
         'DeletePersonToolStripMenuItem
         '
         Me.DeletePersonToolStripMenuItem.Name = "DeletePersonToolStripMenuItem"
-        Me.DeletePersonToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
+        Me.DeletePersonToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DeletePersonToolStripMenuItem.Text = "Delete Person"
         '
         'ToolsToolStripMenuItem
@@ -1109,7 +1120,7 @@ Partial Class frmMainForm
     Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PersonToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents NewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AddPersonToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AddFatherToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AddMotherToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -1162,5 +1173,10 @@ Partial Class frmMainForm
     Friend WithEvents ColumnHeader5 As System.Windows.Forms.ColumnHeader
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents lblIndex As System.Windows.Forms.Label
+    Friend WithEvents OpenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CloseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SaveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents SaveFileDialog1 As System.Windows.Forms.SaveFileDialog
 
 End Class

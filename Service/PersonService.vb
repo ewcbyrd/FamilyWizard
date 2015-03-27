@@ -10,8 +10,12 @@
         mr = New MarriageDAO
     End Sub
 
+    Public Function GetPersonList(fn As String) As Dictionary(Of Integer, Person)
+        Return pr.GetPersonList(fn)
+    End Function
+
     Public Function GetPersonList() As Dictionary(Of Integer, Person)
-        Return pr.GetPersonList
+        Return pr.GetPersonList()
     End Function
 
     Public Function GetPersonById(id As Integer) As Person
@@ -138,12 +142,12 @@
         Return mr.GetMarriage(id)
     End Function
 
-    Public Sub LoadPersonList()
-        pr.LoadPersonList()
+    Public Sub LoadPersonList(fn As String)
+        pr.LoadPersonList(fn)
     End Sub
 
-    Public Sub LoadMarriageList()
-        mr.LoadMarriages()
+    Public Sub LoadMarriageList(fn As String)
+        mr.LoadMarriages(fn)
     End Sub
 
     Public Sub UpdatePersonsBirth(eventDate As EventDate, personId As Integer)

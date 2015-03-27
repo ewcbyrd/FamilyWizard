@@ -27,7 +27,7 @@
 
         lvNames.Items.Clear()
 
-        list = ps.GetPersonList
+        list = ps.GetPersonList()
 
         Dim individual As New Person
 

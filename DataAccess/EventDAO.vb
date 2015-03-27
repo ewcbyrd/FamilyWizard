@@ -35,27 +35,25 @@ Public Class EventDAO
 
     Public Function AddEvent(pe As PersonEvent) As Integer Implements IEventDAO.AddEvent
 
-        Dim id As Integer = My.Settings.CurrentEventIndex
+        Dim id As Integer = frmMainForm.DataFile.CurrentEventIndex
 
         pe.Id = id
 
         _eventList.Add(id, pe)
 
-        My.Settings.CurrentEventIndex += 1
-
-        My.Settings.Save()
+        frmMainForm.DataFile.CurrentEventIndex += 1
 
         Return id
 
     End Function
 
-    Public Sub LoadEventList() Implements IEventDAO.LoadEventList
+    Public Sub LoadEventList(fn As String) Implements IEventDAO.LoadEventList
 
         Dim formatter As New BinaryFormatter()
 
         Dim ef As EventFile
 
-        Using input As New FileStream("C:\Users\Scott Byrd\OneDrive\Visual Basic\HelloWorld\events.dat", FileMode.Open)
+        Using input As New FileStream(fn, FileMode.Open)
             ef = CType(formatter.Deserialize(input), EventFile)
         End Using
 

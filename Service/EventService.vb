@@ -18,8 +18,8 @@
         er.UpdateDate(eventDate, id)
     End Sub
 
-    Public Sub LoadEventList()
-        er.LoadEventList()
+    Public Sub LoadEventList(fn As String)
+        er.LoadEventList(fn)
     End Sub
 
     Public Sub WriteFile(filename As String)
