@@ -878,10 +878,10 @@ Partial Class frmMainForm
         Me.lblName.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.lblName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Bold)
         Me.lblName.ForeColor = System.Drawing.Color.White
-        Me.lblName.Location = New System.Drawing.Point(3, 6)
+        Me.lblName.Location = New System.Drawing.Point(1, 6)
         Me.lblName.Margin = New System.Windows.Forms.Padding(3, 6, 3, 0)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(237, 63)
+        Me.lblName.Size = New System.Drawing.Size(239, 63)
         Me.lblName.TabIndex = 0
         Me.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -948,7 +948,7 @@ Partial Class frmMainForm
         '
         Me.AddPersonToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddFatherToolStripMenuItem, Me.AddMotherToolStripMenuItem, Me.AddSpouseToolStripMenuItem, Me.AddChildToolStripMenuItem, Me.AddUnrelatedPersonToolStripMenuItem})
         Me.AddPersonToolStripMenuItem.Name = "AddPersonToolStripMenuItem"
-        Me.AddPersonToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AddPersonToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.AddPersonToolStripMenuItem.Text = "Add Person"
         '
         'AddFatherToolStripMenuItem
@@ -985,7 +985,7 @@ Partial Class frmMainForm
         '
         Me.AttachPersonToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AttachFatherToolStripMenuItem, Me.AttachMotherToolStripMenuItem, Me.AttachSpouseToolStripMenuItem, Me.AttachChildToolStripMenuItem})
         Me.AttachPersonToolStripMenuItem.Name = "AttachPersonToolStripMenuItem"
-        Me.AttachPersonToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AttachPersonToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.AttachPersonToolStripMenuItem.Text = "Attach Person"
         '
         'AttachFatherToolStripMenuItem
@@ -1015,7 +1015,7 @@ Partial Class frmMainForm
         'DeletePersonToolStripMenuItem
         '
         Me.DeletePersonToolStripMenuItem.Name = "DeletePersonToolStripMenuItem"
-        Me.DeletePersonToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeletePersonToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.DeletePersonToolStripMenuItem.Text = "Delete Person"
         '
         'ToolsToolStripMenuItem

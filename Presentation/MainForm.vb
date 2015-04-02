@@ -43,85 +43,84 @@ Public Class frmMainForm
         Next
 
         ' Retrieve ancestors of focus person and assign to ancestors hashtable
-        Dim ancestors As Hashtable = ps.GetAncestors(FocusPerson.Id)
+        Dim ancestors As Dictionary(Of Integer, Person) = ps.GetAncestors(FocusPerson.Id)
 
         With lblIndividual1
-            .Text = ancestors(1).ToString
-            .Tag = DirectCast(ancestors(1), Person).Id
+            .Text = GetAncestorString(ancestors(1))
+            .Tag = ancestors(1).Id
             .BackColor = Color.DarkOliveGreen
             .ForeColor = Color.White
         End With
 
         With lblIndividual2
-            .Text = ancestors(2).ToString
-            .Tag = DirectCast(ancestors(2), Person).Id
+            .Text = GetAncestorString(ancestors(2))
+            .Tag = ancestors(2).Id
         End With
 
         With lblIndividual3
-            .Text = ancestors(3).ToString
-            .Tag = DirectCast(ancestors(3), Person).Id
+            .Text = GetAncestorString(ancestors(3))
+            .Tag = ancestors(3).Id
         End With
 
         With lblIndividual4
-            .Text = ancestors(4).ToString
-            .Tag = DirectCast(ancestors(4), Person).Id
+            .Text = GetAncestorString(ancestors(4))
+            .Tag = ancestors(4).Id
         End With
 
         With lblIndividual5
-            .Text = ancestors(5).ToString
-            .Tag = DirectCast(ancestors(5), Person).Id
+            .Text = GetAncestorString(ancestors(5))
+            .Tag = ancestors(5).Id
         End With
 
         With lblIndividual6
-            .Text = ancestors(6).ToString
-            .Tag = DirectCast(ancestors(6), Person).Id
+            .Text = GetAncestorString(ancestors(6))
+            .Tag = ancestors(6).Id
         End With
 
         With lblIndividual7
-            .Text = ancestors(7).ToString
-            .Tag = DirectCast(ancestors(7), Person).Id
+            .Text = GetAncestorString(ancestors(7))
+            .Tag = ancestors(7).Id
         End With
 
         With lblIndividual8
-            .Text = ancestors(8).ToString
-            .Tag = DirectCast(ancestors(8), Person).Id
+            .Text = GetAncestorString(ancestors(8))
+            .Tag = ancestors(8).Id
         End With
 
         With lblIndividual9
-            .Text = ancestors(9).ToString
-            .Tag = DirectCast(ancestors(9), Person).Id
+            .Text = GetAncestorString(ancestors(9))
+            .Tag = ancestors(9).Id
         End With
 
         With lblIndividual10
-            .Text = ancestors(10).ToString
-            .Tag = DirectCast(ancestors(10), Person).Id
+            .Text = GetAncestorString(ancestors(10))
+            .Tag = ancestors(10).Id
         End With
 
         With lblIndividual11
-            .Text = ancestors(11).ToString
-            .Tag = DirectCast(ancestors(11), Person).Id
+            .Text = GetAncestorString(ancestors(11))
+            .Tag = ancestors(11).Id
         End With
 
         With lblIndividual12
-            .Text = ancestors(12).ToString
-            .Tag = DirectCast(ancestors(12), Person).Id
+            .Text = GetAncestorString(ancestors(12))
+            .Tag = ancestors(12).Id
         End With
 
         With lblIndividual13
-            .Text = ancestors(13).ToString
-            .Tag = DirectCast(ancestors(13), Person).Id
+            .Text = GetAncestorString(ancestors(13))
+            .Tag = ancestors(13).Id
         End With
 
         With lblIndividual14
-            .Text = ancestors(14).ToString
-            .Tag = DirectCast(ancestors(14), Person).Id
+            .Text = GetAncestorString(ancestors(14))
+            .Tag = ancestors(14).Id
         End With
 
         With lblIndividual15
-            .Text = ancestors(15).ToString
-            .Tag = DirectCast(ancestors(15), Person).Id
+            .Text = GetAncestorString(ancestors(15))
         End With
-
+        Me.Refresh()
     End Sub
 
     Private Sub lvNames_SelectedIndexChanged(sender As Object, e As EventArgs) Handles _
@@ -528,7 +527,7 @@ Public Class frmMainForm
 
         Dim lbl As Label = CType(sender, Label)
 
-        If Not lbl.Text.Equals(" ") Then
+        If Not lbl.Text.Equals("") Then
             For Each c As Control In SplitContainer2.Panel1.Controls
 
                 c.BackColor = Color.DarkGray
@@ -566,7 +565,7 @@ Public Class frmMainForm
 
                 lblIndex.Text = "Index:  " & ps.GetPersonCount
 
-           End If
+            End If
         End If
     End Sub
 
@@ -1095,7 +1094,7 @@ Public Class frmMainForm
             If FocusPerson.FatherId <> 0 Then
                 SetFocusPerson(FocusPerson.Id)
             Else
-                SetFocusPerson(My.Settings.DefaultPerson)
+                SetFocusPerson(DataFile.DefaultPersonIndex)
             End If
 
             lblIndex.Text = "Index:  " & ps.GetPersonCount
@@ -1130,7 +1129,13 @@ Public Class frmMainForm
     End Sub
 
     Private Sub frmMainForm_Load(sender As Object, e As EventArgs) Handles Me.Load
+
         lblIndex.Text = "Index:  " & ps.GetPersonCount
+
+        'SplitContainer1.Panel1Collapsed = True
+        'SplitContainer1.Panel1.Hide()
+
+
     End Sub
 
     Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
@@ -1191,4 +1196,17 @@ Public Class frmMainForm
 
         End If
     End Sub
+
+    Private Function GetAncestorString(person As Person) As String
+
+        Dim ancestorString As String = ""
+
+        If person.Id > 0 Then
+            ancestorString += person.ToString & " " & "(" & person.Birth.EventDate.Year & _
+                " - " & person.Death.EventDate.Year & ")"
+        End If
+
+        Return ancestorString
+
+    End Function
 End Class

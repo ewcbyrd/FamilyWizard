@@ -35,13 +35,15 @@ Public Class EventDAO
 
     Public Function AddEvent(pe As PersonEvent) As Integer Implements IEventDAO.AddEvent
 
-        Dim id As Integer = frmMainForm.DataFile.CurrentEventIndex
+        Dim id As Integer = My.Settings.CurrentEventIndex
 
         pe.Id = id
 
         _eventList.Add(id, pe)
 
-        frmMainForm.DataFile.CurrentEventIndex += 1
+        My.Settings.CurrentEventIndex += 1
+
+        My.Settings.Save()
 
         Return id
 

@@ -18,13 +18,15 @@ Public Class MarriageDAO
 
     Public Function AddMarriage(marriage As MarriageEvent) As Integer Implements IMarriageDAO.AddMarriage
 
-        Dim id As Integer = frmMainForm.DataFile.CurrentMarriageIndex
+        Dim id As Integer = My.Settings.CurrentMarriageIndex
 
         marriage.Id = id
 
         _marriageList.Add(id, marriage)
 
-        frmMainForm.DataFile.CurrentMarriageIndex += 1
+        My.Settings.CurrentMarriageIndex += 1
+
+        My.Settings.Save()
 
         Return id
 

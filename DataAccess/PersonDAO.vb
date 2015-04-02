@@ -33,18 +33,29 @@ Public Class PersonDAO
 
     Public Function AddPerson(person As Person) As Integer Implements IPersonDAO.AddPerson
 
-        Dim id As Integer = frmMainForm.DataFile.CurrentPersonIndex
+        ' Determine next available person index and assign it to id
+        Dim id As Integer = My.Settings.CurrentPersonIndex
 
+        ' Assign id to the id attribute of the person to add
         person.Id = id
 
+        ' Add the person to the Persons dictionary
         Persons.Add(id, person)
 
-        If Persons.Count = 1 Then
-            frmMainForm.DataFile.DefaultPersonIndex = person.Id
+        ' Check to see if this is the first person in the Persons dictionary
+        If Persons.Count = 1 Then ' First person added
+
+            ' Set the default person to the newly added individual
+            'frmMainForm.DataFile.DefaultPersonIndex = person.Id
+
         End If
 
-        frmMainForm.DataFile.CurrentPersonIndex += 1
+        ' Increment the index that will be assigned to the next person added
+        My.Settings.CurrentPersonIndex += 1
 
+        My.Settings.Save()
+
+        ' Return the indentifier of the newly added person
         Return id
 
     End Function

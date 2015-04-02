@@ -44,9 +44,9 @@
         Return mother
     End Function
 
-    Public Function GetAncestors(id As Integer) As Hashtable
+    Public Function GetAncestors(id As Integer) As Dictionary(Of Integer, Person)
 
-        Dim ancestors As New Hashtable
+        Dim ancestors As New Dictionary(Of Integer, Person)
 
         ancestors.Add(1, pr.GetPersonById(id))
 

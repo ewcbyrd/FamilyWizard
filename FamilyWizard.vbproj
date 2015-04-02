@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -22,10 +23,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -63,6 +64,21 @@
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>88B0FCA7842F7321DD8A11FF5F042006E06A1532</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>FamilyWizard_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.9.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -75,6 +91,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\..\..\Desktop\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -107,12 +126,25 @@
     <Compile Include="Domain\Person.vb" />
     <Compile Include="Domain\PersonFile.vb" />
     <Compile Include="Domain\PersonName.vb" />
-    <Compile Include="FamilyWizardDC.designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FamilyWizardDC.dbml</DependentUpon>
-    </Compile>
     <Compile Include="MainModule.vb" />
+    <Compile Include="Presentation\AncestorView.Designer.vb">
+      <DependentUpon>AncestorView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\AncestorView.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\FamilyView.Designer.vb">
+      <DependentUpon>FamilyView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\FamilyView.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\IndividualEditor.Designer.vb">
+      <DependentUpon>IndividualEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\IndividualEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentation\MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +167,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Presentation\MainFormDocking.Designer.vb">
+      <DependentUpon>MainFormDocking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\MainFormDocking.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentation\NewPerson.Designer.vb">
       <DependentUpon>NewPerson.vb</DependentUpon>
     </Compile>
@@ -145,6 +183,12 @@
       <DependentUpon>ParentPicker.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentation\ParentPicker.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\PersonIndex.Designer.vb">
+      <DependentUpon>PersonIndex.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\PersonIndex.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentation\PersonPicker.Designer.vb">
@@ -161,9 +205,15 @@
     <Compile Include="Settings.vb" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FamilyWizardDC.dbml.layout">
-      <DependentUpon>FamilyWizardDC.dbml</DependentUpon>
-    </None>
+    <EmbeddedResource Include="Presentation\AncestorView.resx">
+      <DependentUpon>AncestorView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\FamilyView.resx">
+      <DependentUpon>FamilyView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\IndividualEditor.resx">
+      <DependentUpon>IndividualEditor.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -173,22 +223,24 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\MainFormDocking.resx">
+      <DependentUpon>MainFormDocking.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\NewPerson.resx">
       <DependentUpon>NewPerson.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\ParentPicker.resx">
       <DependentUpon>ParentPicker.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\PersonIndex.resx">
+      <DependentUpon>PersonIndex.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\PersonPicker.resx">
       <DependentUpon>PersonPicker.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FamilyWizardDC.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>FamilyWizardDC.designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="FamilyWizard_TemporaryKey.pfx" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -200,9 +252,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="persons.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
