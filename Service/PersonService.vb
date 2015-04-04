@@ -224,4 +224,35 @@
     Public Function GetPersonCount() As Integer
         Return pr.GetPersonCount
     End Function
+
+    Public Function GetMarriageList(person As Person) As ArrayList
+
+        Dim marriageList As New ArrayList
+
+        Dim spouseList As ArrayList = GetSpouses(person)
+
+        If spouseList.Count > 0 Then
+            For Each item As Integer In spouseList
+                Dim marriage As New Marriage
+
+                marriage.Spouse = GetPersonById(item)
+
+                If person.Gender = "M" Then
+                    marriage.Marriage = GetMarriage(person.Id, marriage.Spouse.Id)
+                Else
+                    marriage.Marriage = GetMarriage(marriage.Spouse.Id, person.Id)
+                End If
+
+                marriageList.Add(marriage)
+
+            Next
+
+            Return marriageList
+        Else
+
+            Return Nothing
+
+        End If
+
+    End Function
 End Class

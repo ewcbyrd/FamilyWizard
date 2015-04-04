@@ -1,9 +1,10 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmIndividualEditor
-    Inherits DockContent
+    Implements IDockContent
 
     Public Event FocusPersonChanged()
+    Public Event MarriageIndecChanged()
 
     Private currentText As String ' The current value of the individual text box with focus
     'Private marriageIndex As Integer ' The marriage index for the focus person and spouse
@@ -14,6 +15,7 @@ Public Class frmIndividualEditor
     Public Property AncestorView As frmAncestorView
     Public Property PersonIndex As frmPersonIndex
     Public Property FamilyView As frmFamilyView
+    Public Property MarriageView As frmMarriageView
 
     Public Property MarriageIndex As Integer
 
@@ -109,7 +111,14 @@ Public Class frmIndividualEditor
     End Sub
 
     Private Sub frmIndividualEditor_FocusPersonChanged() Handles Me.FocusPersonChanged
+
+        Dim ps As New PersonService
+
         LoadIndividualData()
+        AncestorView.AncestorList = ps.GetAncestors(FocusPerson.Id)
+        FamilyView.LoadFamilyView()
+        MarriageView.Marriages = ps.GetMarriageList(FocusPerson)
+
     End Sub
 
     Private Sub txtBirthDate_GotFocus(sender As Object, e As EventArgs) Handles txtBirthDate.GotFocus,
@@ -197,11 +206,10 @@ Public Class frmIndividualEditor
                 marriageId = ps.AddMarriage(FocusPerson.Id, person.Id)
             End If
 
-            FocusPerson = person
+            MarriageView.Marriages = ps.GetMarriageList(FocusPerson)
+            FamilyView.LoadFamilyView()
 
-            LoadIndividualData()
-
-            AncestorView.LoadAncestorView()
+            MarriageIndex = marriageId
 
             PersonIndex.lblIndex.Text = "Index:  " & ps.GetPersonCount
 

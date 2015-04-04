@@ -1,9 +1,10 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmAncestorView
-    Inherits DockContent
+    Implements IDockContent
 
     Public Event AncestorListChanged()
+    Public Property IndividualEditor As frmIndividualEditor
 
     Private Shared _ancestorList As Dictionary(Of Integer, Person)
 
@@ -214,4 +215,29 @@ Public Class frmAncestorView
             .Top = lblIndividual14.Top + lblIndividual14.Height + spacing
         End With
     End Sub
+
+    Private Sub lblIndividual1_Click(sender As Object, e As EventArgs) Handles lblIndividual1.Click, lblIndividual10.Click, lblIndividual11.Click, _
+        lblIndividual12.Click, lblIndividual13.Click, lblIndividual14.Click, lblIndividual15.Click, lblIndividual2.Click, lblIndividual3.Click, _
+        lblIndividual4.Click, lblIndividual5.Click, lblIndividual6.Click, lblIndividual7.Click, lblIndividual8.Click, lblIndividual9.Click
+
+        Dim ps As New PersonService
+        Dim lbl As Label = CType(sender, Label)
+
+        If Not lbl.Text.Equals("") Then
+            For Each c As Control In Me.Controls
+
+                c.BackColor = Color.DarkGray
+                c.ForeColor = Color.Black
+
+            Next
+
+            lbl.BackColor = Color.DarkOliveGreen
+            lbl.ForeColor = Color.White
+
+            IndividualEditor.FocusPerson = ps.GetPersonById(lbl.Tag)
+
+        End If
+
+    End Sub
+
 End Class

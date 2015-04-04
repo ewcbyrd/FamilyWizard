@@ -1,7 +1,7 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmFamilyView
-    Inherits DockContent
+    Implements IDockContent
 
     Public Property IndividualEditor As frmIndividualEditor
 

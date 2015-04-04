@@ -237,10 +237,10 @@ Partial Class frmFamilyView
         Me.lvChildren.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader2, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8})
         Me.lvChildren.FullRowSelect = True
         Me.lvChildren.GridLines = True
-        Me.lvChildren.Location = New System.Drawing.Point(0, 142)
+        Me.lvChildren.Location = New System.Drawing.Point(0, 138)
         Me.lvChildren.MultiSelect = False
         Me.lvChildren.Name = "lvChildren"
-        Me.lvChildren.Size = New System.Drawing.Size(877, 240)
+        Me.lvChildren.Size = New System.Drawing.Size(877, 323)
         Me.lvChildren.TabIndex = 7
         Me.lvChildren.UseCompatibleStateImageBehavior = False
         Me.lvChildren.View = System.Windows.Forms.View.Details

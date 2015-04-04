@@ -1130,11 +1130,8 @@ Public Class frmMainForm
 
     Private Sub frmMainForm_Load(sender As Object, e As EventArgs) Handles Me.Load
 
+
         lblIndex.Text = "Index:  " & ps.GetPersonCount
-
-        'SplitContainer1.Panel1Collapsed = True
-        'SplitContainer1.Panel1.Hide()
-
 
     End Sub
 

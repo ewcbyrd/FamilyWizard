@@ -119,6 +119,7 @@
     <Compile Include="DataAccess\PersonDAO.vb" />
     <Compile Include="Domain\DataFileDescriptor.vb" />
     <Compile Include="Domain\EventFile.vb" />
+    <Compile Include="Domain\Marriage.vb" />
     <Compile Include="Domain\MarriageEvent.vb" />
     <Compile Include="Domain\MarriageFile.vb" />
     <Compile Include="Domain\PersonEvent.vb" />
@@ -173,6 +174,12 @@
     <Compile Include="Presentation\MainFormDocking.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentation\MarriageView.Designer.vb">
+      <DependentUpon>MarriageView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\MarriageView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentation\NewPerson.Designer.vb">
       <DependentUpon>NewPerson.vb</DependentUpon>
     </Compile>
@@ -225,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\MainFormDocking.resx">
       <DependentUpon>MainFormDocking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\MarriageView.resx">
+      <DependentUpon>MarriageView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\NewPerson.resx">
       <DependentUpon>NewPerson.vb</DependentUpon>
