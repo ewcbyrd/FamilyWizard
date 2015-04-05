@@ -208,7 +208,6 @@ Partial Class frmIndividualEditor
         Me.Controls.Add(Me.lblName)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmIndividualEditor"
-        Me.Text = "Individual Editor"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

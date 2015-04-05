@@ -3,7 +3,22 @@
 Public Class frmFamilyView
     Implements IDockContent
 
+
+    Public Event ChildrenChanged()
+
+    Private _children As ArrayList
+
     Public Property IndividualEditor As frmIndividualEditor
+
+    Public Property Children As ArrayList
+        Get
+            Return _children
+        End Get
+        Set(value As ArrayList)
+            _children = value
+            RaiseEvent ChildrenChanged()
+        End Set
+    End Property
 
     Public Sub New()
 
@@ -11,6 +26,24 @@ Public Class frmFamilyView
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+
+    Private Sub frmFamilyView_ChildrenChanged() Handles Me.ChildrenChanged
+
+        lvChildren.Items.Clear()
+
+        For Each individual As Person In Children
+
+            Dim li As ListViewItem
+
+            li = lvChildren.Items.Add(individual.ToString)
+            li.SubItems.Add(individual.Gender)
+            li.SubItems.Add(CreateDatePlaceString(individual.Birth.EventDate.ToString, individual.Birth.EventLocation))
+            li.SubItems.Add(CreateDatePlaceString(individual.Death.EventDate.ToString, individual.Death.EventLocation))
+            li.Tag = individual.Id
+
+        Next
 
     End Sub
 
@@ -41,13 +74,11 @@ Public Class frmFamilyView
         lblFather.Text = ""
         lblMother.Text = ""
         lblMarriage.Text = ""
-        lvChildren.Items.Clear()
-        'cmsFatherSpouses.Items.Clear()
-        'cmsMotherSpouses.Items.Clear()
+        'lvChildren.Items.Clear()
 
-        If IndividualEditor.spouse.Id > 0 Then
+        If IndividualEditor.Spouse IsNot Nothing Then
 
-            Dim marriage As MarriageEvent = ps.GetMarriage(IndividualEditor.marriageIndex)
+            Dim marriage As MarriageEvent = ps.GetMarriage(IndividualEditor.MarriageIndex)
 
             Dim marriageString As String = ""
 
@@ -67,7 +98,7 @@ Public Class frmFamilyView
             mother = IndividualEditor.FocusPerson
         End If
 
-        If father.Id = 0 Then
+        If father Is Nothing Then
             visible = False
         Else
             visible = True
@@ -77,7 +108,7 @@ Public Class frmFamilyView
             c.Visible = visible
         Next
 
-        If mother.Id = 0 Then
+        If mother Is Nothing Then
             visible = False
         Else
             visible = True
@@ -88,30 +119,19 @@ Public Class frmFamilyView
         Next
 
         ' Add father and mother data to panels
-        lblFather.Text = father.ToString
-        lblMother.Text = mother.ToString
-        lblFatherBirthDate.Text = father.Birth.EventDate.ToString
-        lblMotherBirthDate.Text = mother.Birth.EventDate.ToString
-        lblFatherBirthLocation.Text = father.Birth.EventLocation
-        lblMotherBirthLocation.Text = mother.Birth.EventLocation
-        lblFatherDeathDate.Text = father.Death.EventDate.ToString
-        lblMotherDeathDate.Text = mother.Death.EventDate.ToString
-        lblFatherDeathLocation.Text = father.Death.EventLocation
-        lblMotherDeathLocation.Text = mother.Death.EventLocation
+        If father IsNot Nothing Then
+            UpdateFather(father)
+        End If
+
+        If mother IsNot Nothing Then
+            UpdateMother(mother)
+        End If
+
 
         ' Add children to children list
-        UpdateChildrenList(father.Id, mother.Id)
+        'Children = ps.GetChildren(father.Id, mother.Id)
 
-        ' Populate marriage buttons and menus
-        Dim fatherSpouseArray As ArrayList = ps.GetSpouses(father)
-        Dim motherSpouseArray As ArrayList = ps.GetSpouses(mother)
-
-        ' Populate marriage buttons
-        btnFatherMarriages.Text = fatherSpouseArray.Count
-        btnMotherMarriages.Text = motherSpouseArray.Count
-
-        'LoadSpousesContextMenu(cmsFatherSpouses, fatherSpouseArray)
-        'LoadSpousesContextMenu(cmsMotherSpouses, motherSpouseArray)
+        'Console.WriteLine("getChildren called in LoadFamilyView")
 
     End Sub
 
@@ -156,26 +176,6 @@ Public Class frmFamilyView
 
     End Sub
 
-    Public Sub UpdateChildrenList(fatherId As Integer, motherId As Integer)
-
-        Dim ps As New PersonService
-
-        lvChildren.Items.Clear()
-
-        Dim childList As ArrayList = ps.GetChildren(fatherId, motherId)
-        For Each individual As Person In childList
-
-            Dim li As ListViewItem
-
-            li = lvChildren.Items.Add(individual.ToString)
-            li.SubItems.Add(individual.Gender)
-            li.SubItems.Add(CreateDatePlaceString(individual.Birth.EventDate.ToString, individual.Birth.EventLocation))
-            li.SubItems.Add(CreateDatePlaceString(individual.Death.EventDate.ToString, individual.Death.EventLocation))
-            li.Tag = individual.Id
-
-        Next
-    End Sub
-
     Private Function CreateDatePlaceString(eventDate As String, location As String) As String
 
         Dim eventString As String = ""
@@ -191,4 +191,24 @@ Public Class frmFamilyView
         Return eventString
 
     End Function
+
+    Public Sub UpdateFather(father As Person)
+
+        lblFather.Text = father.ToString
+        lblFatherBirthDate.Text = father.Birth.EventDate.ToString
+        lblFatherBirthLocation.Text = father.Birth.EventLocation
+        lblFatherDeathDate.Text = father.Death.EventDate.ToString
+        lblFatherDeathLocation.Text = father.Death.EventLocation
+
+    End Sub
+
+    Public Sub UpdateMother(mother As Person)
+
+        lblMother.Text = mother.ToString
+        lblMotherBirthDate.Text = mother.Birth.EventDate.ToString
+        lblMotherBirthLocation.Text = mother.Birth.EventLocation
+        lblMotherDeathDate.Text = mother.Death.EventDate.ToString
+        lblMotherDeathLocation.Text = mother.Death.EventLocation
+
+    End Sub
 End Class

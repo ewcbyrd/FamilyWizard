@@ -233,6 +233,7 @@
 
         If spouseList.Count > 0 Then
             For Each item As Integer In spouseList
+
                 Dim marriage As New Marriage
 
                 marriage.Spouse = GetPersonById(item)

@@ -4,7 +4,7 @@ Public Class frmIndividualEditor
     Implements IDockContent
 
     Public Event FocusPersonChanged()
-    Public Event MarriageIndecChanged()
+    Public Event SpouseChanged()
 
     Private currentText As String ' The current value of the individual text box with focus
     'Private marriageIndex As Integer ' The marriage index for the focus person and spouse
@@ -32,12 +32,15 @@ Public Class frmIndividualEditor
         End Set
     End Property
 
-    Public Property spouse As Person
+    Public Property Spouse As Person
         Get
             Return _spouse
         End Get
         Set(value As Person)
             _spouse = value
+            If Spouse IsNot Nothing Then
+                RaiseEvent SpouseChanged()
+            End If
         End Set
     End Property
 
@@ -48,6 +51,7 @@ Public Class frmIndividualEditor
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
+        _spouse = New Person
 
     End Sub
 
@@ -84,27 +88,13 @@ Public Class frmIndividualEditor
 
         Dim spouses As ArrayList = ps.GetSpouses(FocusPerson)
 
-        spouse = New Person
-
         Select Case spouses.Count
             Case 0
                 btnMarriage.Text = "Add Spouse..."
                 btnMarriage.Tag = 0
-                marriageIndex = 0
+                MarriageIndex = 0
             Case Else
-                spouse = ps.GetPersonById(spouses(0))
-                btnMarriage.Text = "Marriage to " & spouse.ToString
-                btnMarriage.Tag = spouse.Id
-
-                Dim marriage As New MarriageEvent
-
-                marriage = ps.GetMarriage(FocusPerson.Id, spouse.Id)
-
-                txtMarriageDate.Text = marriage.MarriageDate.ToString
-                txtMarriagePlace.Text = marriage.MarriageLocation
-
-                'Set the focus marriage index
-                marriageIndex = marriage.Id
+                Spouse = ps.GetPersonById(spouses(0))
 
         End Select
 
@@ -113,6 +103,8 @@ Public Class frmIndividualEditor
     Private Sub frmIndividualEditor_FocusPersonChanged() Handles Me.FocusPersonChanged
 
         Dim ps As New PersonService
+
+        Spouse = Nothing
 
         LoadIndividualData()
         AncestorView.AncestorList = ps.GetAncestors(FocusPerson.Id)
@@ -269,6 +261,7 @@ Public Class frmIndividualEditor
                     Case "txtMarriageDate"
                         ps.UpdateMarriageDate(New DateParser(txtMarriageDate.Text).GetEventDate, marriageIndex)
                         FamilyView.UpdateFamilyViewMarriage(txtMarriageDate.Text, txtMarriagePlace.Text)
+                        MarriageView.Marriages = ps.GetMarriageList(FocusPerson)
                 End Select
             End If
         End If
@@ -294,6 +287,7 @@ Public Class frmIndividualEditor
                 Case "txtMarriagePlace"
                     ps.UpdateMarriageLocation(txtMarriagePlace.Text, marriageIndex)
                     FamilyView.UpdateFamilyViewMarriage(txtMarriageDate.Text, txtMarriagePlace.Text)
+                    MarriageView.Marriages = ps.GetMarriageList(FocusPerson)
                 Case "txtName"
 
                     ' Update name in the database
@@ -315,5 +309,31 @@ Public Class frmIndividualEditor
 
         End If
 
+    End Sub
+
+    Private Sub frmIndividualEditor_SpouseChanged() Handles Me.SpouseChanged
+
+        Dim ps As New PersonService
+
+        btnMarriage.Text = "Marriage to " & Spouse.ToString
+        btnMarriage.Tag = Spouse.Id
+
+        Dim marriage As New MarriageEvent
+
+        marriage = ps.GetMarriage(FocusPerson.Id, Spouse.Id)
+
+        txtMarriageDate.Text = marriage.MarriageDate.ToString
+        txtMarriagePlace.Text = marriage.MarriageLocation
+
+        'Set the focus marriage index
+        MarriageIndex = marriage.Id
+
+        'Update children in Family View
+        If FocusPerson.Gender = "M" Then
+            FamilyView.Children = ps.GetChildren(FocusPerson.Id, Spouse.Id)
+        Else
+            FamilyView.Children = ps.GetChildren(Spouse.Id, FocusPerson.Id)
+        End If
+        Console.WriteLine("Get Children called by SpouseChanged")
     End Sub
 End Class

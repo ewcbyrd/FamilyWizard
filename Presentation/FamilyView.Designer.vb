@@ -23,7 +23,6 @@ Partial Class frmFamilyView
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.pnlFather = New System.Windows.Forms.Panel()
-        Me.btnFatherMarriages = New System.Windows.Forms.Button()
         Me.lblFatherDeathLocation = New System.Windows.Forms.Label()
         Me.lblFatherDeathDate = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -33,7 +32,6 @@ Partial Class frmFamilyView
         Me.lblFather = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.pnlMother = New System.Windows.Forms.Panel()
-        Me.btnMotherMarriages = New System.Windows.Forms.Button()
         Me.lblMotherDeathLocation = New System.Windows.Forms.Label()
         Me.lblMotherDeathDate = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -58,7 +56,6 @@ Partial Class frmFamilyView
         Me.pnlFather.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlFather.BackColor = System.Drawing.Color.DarkOliveGreen
-        Me.pnlFather.Controls.Add(Me.btnFatherMarriages)
         Me.pnlFather.Controls.Add(Me.lblFatherDeathLocation)
         Me.pnlFather.Controls.Add(Me.lblFatherDeathDate)
         Me.pnlFather.Controls.Add(Me.Label8)
@@ -70,16 +67,6 @@ Partial Class frmFamilyView
         Me.pnlFather.Name = "pnlFather"
         Me.pnlFather.Size = New System.Drawing.Size(435, 90)
         Me.pnlFather.TabIndex = 4
-        '
-        'btnFatherMarriages
-        '
-        Me.btnFatherMarriages.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnFatherMarriages.Location = New System.Drawing.Point(400, 14)
-        Me.btnFatherMarriages.Name = "btnFatherMarriages"
-        Me.btnFatherMarriages.Size = New System.Drawing.Size(21, 21)
-        Me.btnFatherMarriages.TabIndex = 7
-        Me.btnFatherMarriages.Text = "Button1"
-        Me.btnFatherMarriages.UseVisualStyleBackColor = True
         '
         'lblFatherDeathLocation
         '
@@ -156,7 +143,6 @@ Partial Class frmFamilyView
         Me.pnlMother.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlMother.BackColor = System.Drawing.Color.DarkOliveGreen
-        Me.pnlMother.Controls.Add(Me.btnMotherMarriages)
         Me.pnlMother.Controls.Add(Me.lblMotherDeathLocation)
         Me.pnlMother.Controls.Add(Me.lblMotherDeathDate)
         Me.pnlMother.Controls.Add(Me.Label9)
@@ -168,16 +154,6 @@ Partial Class frmFamilyView
         Me.pnlMother.Name = "pnlMother"
         Me.pnlMother.Size = New System.Drawing.Size(435, 90)
         Me.pnlMother.TabIndex = 5
-        '
-        'btnMotherMarriages
-        '
-        Me.btnMotherMarriages.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnMotherMarriages.Location = New System.Drawing.Point(400, 14)
-        Me.btnMotherMarriages.Name = "btnMotherMarriages"
-        Me.btnMotherMarriages.Size = New System.Drawing.Size(21, 21)
-        Me.btnMotherMarriages.TabIndex = 8
-        Me.btnMotherMarriages.Text = "Button2"
-        Me.btnMotherMarriages.UseVisualStyleBackColor = True
         '
         'lblMotherDeathLocation
         '
@@ -247,7 +223,7 @@ Partial Class frmFamilyView
         '
         'ColumnHeader2
         '
-        Me.ColumnHeader2.Text = "Children"
+        Me.ColumnHeader2.Text = "Child"
         '
         'ColumnHeader6
         '
@@ -312,7 +288,6 @@ Partial Class frmFamilyView
 
     End Sub
     Friend WithEvents pnlFather As System.Windows.Forms.Panel
-    Friend WithEvents btnFatherMarriages As System.Windows.Forms.Button
     Friend WithEvents lblFatherDeathLocation As System.Windows.Forms.Label
     Friend WithEvents lblFatherDeathDate As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
@@ -322,7 +297,6 @@ Partial Class frmFamilyView
     Friend WithEvents lblFather As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents pnlMother As System.Windows.Forms.Panel
-    Friend WithEvents btnMotherMarriages As System.Windows.Forms.Button
     Friend WithEvents lblMotherDeathLocation As System.Windows.Forms.Label
     Friend WithEvents lblMotherDeathDate As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label

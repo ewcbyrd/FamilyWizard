@@ -27,9 +27,9 @@ Partial Class frmPersonIndex
         Me.lvNames = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -83,6 +83,11 @@ Partial Class frmPersonIndex
         Me.ColumnHeader3.Text = "Birth"
         Me.ColumnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "Death"
+        Me.ColumnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.DarkGray
@@ -105,11 +110,6 @@ Partial Class frmPersonIndex
         Me.Label11.TabIndex = 5
         Me.Label11.Text = "Find:"
         '
-        'ColumnHeader2
-        '
-        Me.ColumnHeader2.Text = "Death"
-        Me.ColumnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
         'frmPersonIndex
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -119,7 +119,6 @@ Partial Class frmPersonIndex
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmPersonIndex"
-        Me.Text = "Person Index"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)

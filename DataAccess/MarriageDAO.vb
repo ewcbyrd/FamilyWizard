@@ -66,11 +66,14 @@ Public Class MarriageDAO
 
         If person.Gender = "M" Then
             spouse = From marriage In _marriageList _
-                    Where marriage.Value.GroomId = person.Id _
+                    Where marriage.Value.GroomId = person.Id
+                    Order By marriage.Value.MarriageDate.Year
                     Select marriage.Value.BrideId Distinct
+
         Else
             spouse = From marriage In _marriageList _
-                    Where marriage.Value.BrideId = person.Id _
+                    Where marriage.Value.BrideId = person.Id
+                    Order By marriage.Value.MarriageDate.Year
                     Select marriage.Value.GroomId Distinct
         End If
 
