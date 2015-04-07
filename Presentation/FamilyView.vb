@@ -127,12 +127,6 @@ Public Class frmFamilyView
             UpdateMother(mother)
         End If
 
-
-        ' Add children to children list
-        'Children = ps.GetChildren(father.Id, mother.Id)
-
-        'Console.WriteLine("getChildren called in LoadFamilyView")
-
     End Sub
 
     Public Sub UpdateFamilyViewMarriage(marriageDate As String, location As String)

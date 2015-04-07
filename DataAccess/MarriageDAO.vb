@@ -24,9 +24,14 @@ Public Class MarriageDAO
 
         _marriageList.Add(id, marriage)
 
+        My.Application.Log.WriteEntry(Now & ": Marriage added for Person ID #'s " & marriage.GroomId & " and " _
+                                      & marriage.BrideId & " as ID # " & marriage.Id)
+
         My.Settings.CurrentMarriageIndex += 1
 
         My.Settings.Save()
+
+        My.Application.Log.WriteEntry(Now & ": CurrentMarriageIndex incremented to " & My.Settings.CurrentMarriageIndex)
 
         Return id
 
@@ -50,11 +55,15 @@ Public Class MarriageDAO
 
         _marriageList(marriageId).MarriageDate = eventDate
 
+        My.Application.Log.WriteEntry(Now & ": Marriage date set to " & eventDate.ToString & " for marriage ID # " & marriageId)
+
     End Sub
 
     Public Sub UpdateMarriageLocation(location As String, marriageId As Integer) Implements IMarriageDAO.UpdateMarriageLocation
 
         _marriageList(marriageId).MarriageLocation = location
+
+        My.Application.Log.WriteEntry(Now & ": Marriage location set to " & location & " for marriage ID # " & marriageId)
 
     End Sub
 
@@ -114,6 +123,8 @@ Public Class MarriageDAO
             formatter.Serialize(output, mf)
         End Using
 
+        My.Application.Log.WriteEntry(Now & ": Marriage file saved")
+
     End Sub
 
     Public Sub DeleteMarriage(marriageId As Integer) Implements IMarriageDAO.DeleteMarriage
@@ -122,6 +133,8 @@ Public Class MarriageDAO
 
         ' Remove the marriage event from the library
         _marriageList.Remove(marriageId)
+
+        My.Application.Log.WriteEntry(Now & ": Marriage ID # " & marriageId & " removed")
 
     End Sub
 

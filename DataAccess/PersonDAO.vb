@@ -42,6 +42,9 @@ Public Class PersonDAO
         ' Add the person to the Persons dictionary
         Persons.Add(id, person)
 
+        ' Log addition of new person
+        My.Application.Log.WriteEntry(Now & ": Added " & person.ToString & " as ID # " & person.Id)
+
         ' Check to see if this is the first person in the Persons dictionary
         If Persons.Count = 1 Then ' First person added
 
@@ -55,6 +58,8 @@ Public Class PersonDAO
 
         My.Settings.Save()
 
+        My.Application.Log.WriteEntry(Now & ":CurrentPersonIndex incremented to " & My.Settings.CurrentPersonIndex)
+
         ' Return the indentifier of the newly added person
         Return id
 
@@ -66,9 +71,13 @@ Public Class PersonDAO
 
             Persons(personId).BirthId = eventId
 
+            My.Application.Log.WriteEntry(Now & ": BirthId set to " & eventId & " for person ID # " & personId)
+
         Else
 
             Persons(personId).DeathId = eventId
+
+            My.Application.Log.WriteEntry(Now & ": DeathId set to " & eventId & " for person ID # " & personId)
 
         End If
 
@@ -78,8 +87,15 @@ Public Class PersonDAO
 
         If parentType = "father" Then
             Persons(personId).FatherId = parentId
+
+            My.Application.Log.WriteEntry(Now & ": FatherId set to " & parentId & " for person ID # " & personId)
+
         Else
+
             Persons(personId).MotherId = parentId
+
+            My.Application.Log.WriteEntry(Now & ": MotherId set to " & parentId & " for person ID # " & personId)
+
         End If
 
     End Sub
@@ -106,25 +122,41 @@ Public Class PersonDAO
     End Sub
 
     Public Sub UpdatePersonsBirth(eventDate As EventDate, personId As Integer) Implements IPersonDAO.UpdatePersonsBirth
+
         Persons(personId).Birth.EventDate = eventDate
+
+        My.Application.Log.WriteEntry(Now & ": Birth set to " & eventDate.ToString & " for ID # " & personId)
+
     End Sub
 
     Public Sub UpdatePersonsDeath(eventDate As EventDate, personId As Integer) Implements IPersonDAO.UpdatePersonsDeath
+
         Persons(personId).Death.EventDate = eventDate
+
+        My.Application.Log.WriteEntry(Now & ": Death set to " & eventDate.ToString & " for ID # " & personId)
+
     End Sub
 
     Public Sub UpdatePersonsBirthLocation(location As String, personId As Integer) Implements IPersonDAO.UpdatePersonsBirthLocation
+
         Persons(personId).Birth.EventLocation = location
+        My.Application.Log.WriteEntry(Now & ": Birth location set to " & location & " for ID # " & personId)
+
     End Sub
 
     Public Sub UpdatePersonsDeathLocation(location As String, personId As Integer) Implements IPersonDAO.UpdatePersonsDeathLocation
+
         Persons(personId).Death.EventLocation = location
+        My.Application.Log.WriteEntry(Now & ": Death location set to " & location & " for ID # " & personId)
+
     End Sub
 
     Sub UpdateParents(personId As Integer, fatherId As Integer, motherId As Integer) Implements IPersonDAO.UpdateParents
 
         Persons(personId).FatherId = fatherId
         Persons(personId).MotherId = motherId
+
+        My.Application.Log.WriteEntry(Now & ": Father set to " & fatherId & " mother set to " & motherId & " for ID # " & personId)
 
     End Sub
 
@@ -137,6 +169,8 @@ Public Class PersonDAO
             formatter.Serialize(output, pf)
         End Using
 
+        My.Application.Log.WriteEntry(Now & ": Person file saved")
+
     End Sub
 
     Public Sub UpdatePersonName(personId As Integer, nameString As String) Implements IPersonDAO.UpdatePersonName
@@ -145,6 +179,8 @@ Public Class PersonDAO
 
         Persons(personId).GivenName = pn.GivenName
         Persons(personId).Surname = pn.Surname
+
+        My.Application.Log.WriteEntry(Now & ": Name set to " & Persons(personId).ToString & " for ID # " & personId)
 
     End Sub
 
@@ -169,6 +205,8 @@ Public Class PersonDAO
 
         ' Remove designated person from list
         Persons.Remove(personId)
+
+        My.Application.Log.WriteEntry(Now & ": Person ID # " & personId & " removed")
 
     End Sub
 

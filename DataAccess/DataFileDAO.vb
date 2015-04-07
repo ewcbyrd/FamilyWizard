@@ -30,5 +30,7 @@ Public Class DataFileDAO
             formatter.Serialize(output, dfd)
         End Using
 
+        My.Application.Log.WriteEntry(Now & ": Data file saved")
+
     End Sub
 End Class

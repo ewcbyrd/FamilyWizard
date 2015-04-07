@@ -25,11 +25,15 @@ Public Class EventDAO
 
         _eventList(id).EventLocation = location
 
+        My.Application.Log.WriteEntry(Now & ": Location set to " & location & " for event # " & id)
+
     End Sub
 
     Public Sub UpdateDate(eventDate As EventDate, id As Integer) Implements IEventDAO.UpdateDate
 
         _eventList(id).EventDate = eventDate
+
+        My.Application.Log.WriteEntry(Now & ": Date set to " & eventDate.ToString & " for event # " & id)
 
     End Sub
 
@@ -41,9 +45,13 @@ Public Class EventDAO
 
         _eventList.Add(id, pe)
 
+        My.Application.Log.WriteEntry(Now & ": New " & pe.EventType & " added as ID # " & pe.Id)
+
         My.Settings.CurrentEventIndex += 1
 
         My.Settings.Save()
+
+        My.Application.Log.WriteEntry(Now & ": CurrentEventIndex incremented to " & My.Settings.CurrentEventIndex)
 
         Return id
 
@@ -72,6 +80,8 @@ Public Class EventDAO
             formatter.Serialize(output, ef)
         End Using
 
+        My.Application.Log.WriteEntry(Now & ": Event file saved")
+
     End Sub
 
     Public Sub DeleteEvent(eventId As Integer) Implements IEventDAO.DeleteEvent
@@ -80,6 +90,8 @@ Public Class EventDAO
 
         ' Remove the event from the event list
         _eventList.Remove(eventId)
+
+        My.Application.Log.WriteEntry(Now & ": Event # " & eventId & " removed")
 
     End Sub
     Public Function GetEventsForIndividual(personId As Integer) As ArrayList Implements IEventDAO.GetEventsForIndividual

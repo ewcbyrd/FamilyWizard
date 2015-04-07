@@ -111,6 +111,20 @@ Public Class frmIndividualEditor
         FamilyView.LoadFamilyView()
         MarriageView.Marriages = ps.GetMarriageList(FocusPerson)
 
+        ' Populate the children list of Family View when no spouse exists
+        If MarriageView.Marriages Is Nothing Then
+            If FocusPerson.Gender = "M" Then
+                FamilyView.Children = ps.GetChildren(FocusPerson.Id, 0)
+            Else
+                FamilyView.Children = ps.GetChildren(0, FocusPerson.Id)
+            End If
+        End If
+
+        ' Set CurrentPersonIndex to the index of the aplicable Name list item
+        PersonIndex.SetCurrentPersonIndex(FocusPerson.Id)
+
+        My.Application.Log.WriteEntry("Focus person changed to " & FocusPerson.ToString & "(ID #" & FocusPerson.Id & ")")
+
     End Sub
 
     Private Sub txtBirthDate_GotFocus(sender As Object, e As EventArgs) Handles txtBirthDate.GotFocus,
@@ -248,21 +262,25 @@ Public Class frmIndividualEditor
                         eventDate = New DateParser(txtBirthDate.Text).GetEventDate
                         es.UpdateDate(eventDate, FocusPerson.BirthId)
                         ps.UpdatePersonsBirth(eventDate, FocusPerson.Id)
-                        'lvNames.Items(PersonIndex).SubItems(2).Text = tb.Text
+                        PersonIndex.lvNames.Items(PersonIndex.CurrentPersonIndex).SubItems(1).Text = FocusPerson.Birth.EventDate.Year
                         FamilyView.UpdateFamilyViewBirthDeath("Birth", txtBirthDate.Text, FocusPerson.Gender)
+                        AncestorView.AncestorList = ps.GetAncestors(FocusPerson.Id)
 
                     Case "txtDeathDate"
                         eventDate = New DateParser(txtDeathDate.Text).GetEventDate
                         es.UpdateDate(eventDate, FocusPerson.DeathId)
                         ps.UpdatePersonsDeath(eventDate, FocusPerson.Id)
-                        'lvNames.Items(personIndex).SubItems(3).Text = tb.Text
+                        PersonIndex.lvNames.Items(PersonIndex.CurrentPersonIndex).SubItems(2).Text = FocusPerson.Death.EventDate.Year
                         FamilyView.UpdateFamilyViewBirthDeath("Death", txtDeathDate.Text, FocusPerson.Gender)
+                        AncestorView.AncestorList = ps.GetAncestors(FocusPerson.Id)
 
                     Case "txtMarriageDate"
                         ps.UpdateMarriageDate(New DateParser(txtMarriageDate.Text).GetEventDate, marriageIndex)
                         FamilyView.UpdateFamilyViewMarriage(txtMarriageDate.Text, txtMarriagePlace.Text)
                         MarriageView.Marriages = ps.GetMarriageList(FocusPerson)
+
                 End Select
+
             End If
         End If
 
@@ -301,9 +319,13 @@ Public Class frmIndividualEditor
                     End If
 
                     ' Update name in the person list
-                    'lvNames.Items(personIndex).SubItems(0).Text = FocusPerson.ToStringLastFirst
+                    PersonIndex.lvNames.Items(PersonIndex.CurrentPersonIndex).SubItems(0).Text = FocusPerson.ToStringLastFirst
 
                     'Update the name in the ancestor view
+                    AncestorView.AncestorList = ps.GetAncestors(FocusPerson.Id)
+
+                    ' Update Individual Editor name banner
+                    lblName.Text = FocusPerson.ToString
 
             End Select
 
@@ -315,6 +337,7 @@ Public Class frmIndividualEditor
 
         Dim ps As New PersonService
 
+        ' Update the marriage button on the Individual Editor
         btnMarriage.Text = "Marriage to " & Spouse.ToString
         btnMarriage.Tag = Spouse.Id
 
@@ -334,6 +357,8 @@ Public Class frmIndividualEditor
         Else
             FamilyView.Children = ps.GetChildren(Spouse.Id, FocusPerson.Id)
         End If
-        Console.WriteLine("Get Children called by SpouseChanged")
+
+        My.Application.Log.WriteEntry("Focus spouse changed to " & Spouse.ToString & "(ID #" & Spouse.Id & ")")
+
     End Sub
 End Class
