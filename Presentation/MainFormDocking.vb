@@ -1,4 +1,5 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
+Imports System.IO
 
 Public Class frmMainFormDocking
 
@@ -153,6 +154,7 @@ Public Class frmMainFormDocking
                         If IndividualEditor.FocusPerson.MotherId <> 0 Then
                             ps.AddMarriage(IndividualEditor.FocusPerson.FatherId, IndividualEditor.FocusPerson.MotherId)
                         End If
+
                     Case "AddMotherToolStripMenuItem"
                         ps.AddParent(IndividualEditor.FocusPerson.Id, parentId, "mother")
 
@@ -165,13 +167,20 @@ Public Class frmMainFormDocking
                         End If
                 End Select
 
+                ' Add the new person to the Person Index
                 PersonIndex.AddItemToPersonListView(ps.GetPersonById(parentId))
 
+                ' Recalcuate the Current Person Index
+                PersonIndex.SetCurrentPersonIndex(IndividualEditor.FocusPerson.Id)
+
+                ' Refresh the Ancestor View
                 AncestorView.AncestorList = ps.GetAncestors(IndividualEditor.FocusPerson.Id)
 
+                ' Update the index count of the Person Index view
                 PersonIndex.lblIndex.Text = "Index:  " & ps.GetPersonCount
 
             End If
+
         End If
     End Sub
 
@@ -201,38 +210,26 @@ Public Class frmMainFormDocking
                 ' Add the new person to the database and assign the key to spouseId
                 Dim spouseId As Integer = ps.AddPerson(person)
 
-
-                ' Add a marriage record to the database
-                Dim marriageId As Integer = 0
-
+                ' Add a marriage record for the focus person and the new spouse
                 If IndividualEditor.FocusPerson.Gender = "M" Then
-                    marriageId = ps.AddMarriage(IndividualEditor.FocusPerson.Id, spouseId)
+                    ps.AddMarriage(IndividualEditor.FocusPerson.Id, spouseId)
                 Else
-                    marriageId = ps.AddMarriage(spouseId, IndividualEditor.FocusPerson.Id)
+                    ps.AddMarriage(spouseId, IndividualEditor.FocusPerson.Id)
                 End If
 
-                IndividualEditor.spouse = ps.GetPersonById(spouseId)
-
-                IndividualEditor.btnMarriage.Text = "Marriage to " & IndividualEditor.spouse.ToString
-                IndividualEditor.btnMarriage.Tag = IndividualEditor.spouse.Id
-                IndividualEditor.txtMarriageDate.Clear()
-                IndividualEditor.txtMarriagePlace.Clear()
-
-                'Set the focus marriage index
-                IndividualEditor.MarriageIndex = marriageId
-
-                'Add new spouse to marriage view
-                Dim marriage As New Marriage
-                marriage.Spouse = person
-                marriage.Marriage = ps.GetMarriage(marriageId)
-
-                MarriageView.AddMarriage(marriage)
+                ' Set the focus spouse to the newly added spouse
+                IndividualEditor.Spouse = ps.GetPersonById(spouseId)
 
                 'Add new person to names list
-                PersonIndex.AddItemToPersonListView(IndividualEditor.spouse)
+                PersonIndex.AddItemToPersonListView(IndividualEditor.Spouse)
 
+                ' Recalculate Current Person Index
+                PersonIndex.SetCurrentPersonIndex(IndividualEditor.FocusPerson.Id)
+
+                ' Refresh the Family View
                 FamilyView.LoadFamilyView()
 
+                ' Update the Index value for the Person Index
                 PersonIndex.lblIndex.Text = "Index:  " & ps.GetPersonCount
 
             End If
@@ -273,6 +270,8 @@ Public Class frmMainFormDocking
 
                     PersonIndex.AddItemToPersonListView(person)
 
+                    PersonIndex.SetCurrentPersonIndex(IndividualEditor.FocusPerson.Id)
+
                     FamilyView.Children = ps.GetChildren(person.FatherId, person.MotherId)
 
                     PersonIndex.lblIndex.Text = "Index:  " & ps.GetPersonCount
@@ -295,11 +294,13 @@ Public Class frmMainFormDocking
 
                 Dim personId As Integer = ps.AddPerson(person)
 
-                'PersonIndex = PersonIndex.AddItemToPersonListView(ps.GetPersonById(personId))
+                Dim addedPerson As Person = ps.GetPersonById(personId)
+
+                PersonIndex.AddItemToPersonListView(addedPerson)
 
                 PersonIndex.lblIndex.Text = "Index:  " & ps.GetPersonCount
 
-                IndividualEditor.FocusPerson = ps.GetPersonById(personId)
+                IndividualEditor.FocusPerson = addedPerson
 
             End If
         End If
@@ -394,29 +395,22 @@ Public Class frmMainFormDocking
         Dim result As DialogResult = dialog.ShowDialog
 
         Dim selectedIndex As Integer = 0
-        Dim marriageId As Integer = 0
 
         If result = Windows.Forms.DialogResult.OK Then
             selectedIndex = dialog.SelectedPersonIndex
+
+            ' Check that an individual was selected
             If selectedIndex > 0 Then
+
+                ' Add a new marriage between the focus person and the selected individual
                 If IndividualEditor.FocusPerson.Gender = "M" Then
-                    marriageId = ps.AddMarriage(IndividualEditor.FocusPerson.Id, selectedIndex)
+                    ps.AddMarriage(IndividualEditor.FocusPerson.Id, selectedIndex)
                 Else
-                    marriageId = ps.AddMarriage(selectedIndex, IndividualEditor.FocusPerson.Id)
+                    ps.AddMarriage(selectedIndex, IndividualEditor.FocusPerson.Id)
                 End If
 
-                Dim spouse As Person = ps.GetPersonById(selectedIndex)
-
-                IndividualEditor.btnMarriage.Text = "Marriage to " & spouse.ToString
-                IndividualEditor.btnMarriage.Tag = spouse.Id
-                IndividualEditor.txtMarriageDate.Clear()
-                IndividualEditor.txtMarriagePlace.Clear()
-
-                'Set the focus marriage index
-                IndividualEditor.MarriageIndex = marriageId
-
-                'Add new spouse to marriage view
-                MarriageView.Marriages = ps.GetMarriageList(IndividualEditor.FocusPerson)
+                ' Set the focus spouse to the selected individual
+                IndividualEditor.Spouse = ps.GetPersonById(selectedIndex)
 
             End If
 
@@ -491,4 +485,30 @@ Public Class frmMainFormDocking
 
     End Sub
     
+    Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
+
+        DataFile = New DataFileDescriptor
+
+        SaveFileDialog1.Filter = "fwz files (*.fwz)|*.fwz"
+
+        If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            Dim fi As New FileInfo(SaveFileDialog1.FileName)
+
+            DataFile.FileName = Replace(fi.Name, ".fwz", "")
+            DataFile.PathName = fi.DirectoryName
+
+            Try
+                dfs.Write(DataFile)
+
+                Me.Text = "Family Wizard - " & DataFile.FileName
+
+            Catch ex As Exception
+
+            End Try
+
+        End If
+
+    End Sub
+
 End Class

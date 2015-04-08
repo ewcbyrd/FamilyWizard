@@ -109,7 +109,14 @@ Public Class frmIndividualEditor
         LoadIndividualData()
         AncestorView.AncestorList = ps.GetAncestors(FocusPerson.Id)
         FamilyView.LoadFamilyView()
-        MarriageView.Marriages = ps.GetMarriageList(FocusPerson)
+        'MarriageView.Marriages = ps.GetMarriageList(FocusPerson)
+
+        ' Update the appropriate individual in the Familyview
+        If FocusPerson.Gender = "M" Then
+            FamilyView.UpdateFather(FocusPerson)
+        Else
+            FamilyView.UpdateMother(FocusPerson)
+        End If
 
         ' Populate the children list of Family View when no spouse exists
         If MarriageView.Marriages Is Nothing Then
@@ -204,7 +211,14 @@ Public Class frmIndividualEditor
 
             person = ps.GetPersonById(id)
 
+            ' Add new spouse to Person Index
             PersonIndex.AddItemToPersonListView(person)
+
+            ' Recalculate the Current Person Index for the Focus Person
+            PersonIndex.SetCurrentPersonIndex(FocusPerson.Id)
+
+            ' Update the Index Count of the Person Index view
+            PersonIndex.lblIndex.Text = "Index:  " & ps.GetPersonCount
 
             If person.Gender = "M" Then
                 marriageId = ps.AddMarriage(person.Id, FocusPerson.Id)
@@ -212,12 +226,9 @@ Public Class frmIndividualEditor
                 marriageId = ps.AddMarriage(FocusPerson.Id, person.Id)
             End If
 
-            MarriageView.Marriages = ps.GetMarriageList(FocusPerson)
-            FamilyView.LoadFamilyView()
+            Spouse = person
 
-            MarriageIndex = marriageId
 
-            PersonIndex.lblIndex.Text = "Index:  " & ps.GetPersonCount
 
         End If
     End Sub
@@ -341,22 +352,28 @@ Public Class frmIndividualEditor
         btnMarriage.Text = "Marriage to " & Spouse.ToString
         btnMarriage.Tag = Spouse.Id
 
-        Dim marriage As New MarriageEvent
+        ' Retrieve marriage between focus person and focus spouses
+        Dim marriage As MarriageEvent = ps.GetMarriage(FocusPerson.Id, Spouse.Id)
 
-        marriage = ps.GetMarriage(FocusPerson.Id, Spouse.Id)
-
+        ' Store the marriage date and location in the appropriate Individual Editor text boxes
         txtMarriageDate.Text = marriage.MarriageDate.ToString
         txtMarriagePlace.Text = marriage.MarriageLocation
 
-        'Set the focus marriage index
+        ' Set the focus marriage index
         MarriageIndex = marriage.Id
 
-        'Update children in Family View
+        ' Update children in Family View
         If FocusPerson.Gender = "M" Then
             FamilyView.Children = ps.GetChildren(FocusPerson.Id, Spouse.Id)
         Else
             FamilyView.Children = ps.GetChildren(Spouse.Id, FocusPerson.Id)
         End If
+
+        ' Refresh the family view
+        FamilyView.LoadFamilyView()
+
+        ' Refresh the Marriage view
+        MarriageView.Marriages = ps.GetMarriageList(FocusPerson)
 
         My.Application.Log.WriteEntry("Focus spouse changed to " & Spouse.ToString & "(ID #" & Spouse.Id & ")")
 

@@ -7,6 +7,8 @@ Public Class frmFamilyView
     Public Event ChildrenChanged()
 
     Private _children As ArrayList
+    Private _husband As Person
+    Private _wife As Person
 
     Public Property IndividualEditor As frmIndividualEditor
 
@@ -71,10 +73,9 @@ Public Class frmFamilyView
 
         Dim ps As New PersonService
 
-        lblFather.Text = ""
-        lblMother.Text = ""
+        'lblFather.Text = ""
+        'lblMother.Text = ""
         lblMarriage.Text = ""
-        'lvChildren.Items.Clear()
 
         If IndividualEditor.Spouse IsNot Nothing Then
 
@@ -118,7 +119,7 @@ Public Class frmFamilyView
             c.Visible = visible
         Next
 
-        ' Add father and mother data to panels
+        'Add father and mother data to panels
         If father IsNot Nothing Then
             UpdateFather(father)
         End If

@@ -1,5 +1,4 @@
-﻿Imports MySql.Data.MySqlClient
-Imports System.Runtime.Serialization.Formatters.Binary
+﻿Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.IO
 
 Public Class PersonDAO

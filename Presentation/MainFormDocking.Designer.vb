@@ -23,21 +23,21 @@ Partial Class frmMainFormDocking
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DockPanelSkin3 As WeifenLuo.WinFormsUI.Docking.DockPanelSkin = New WeifenLuo.WinFormsUI.Docking.DockPanelSkin()
-        Dim AutoHideStripSkin3 As WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin = New WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin()
-        Dim DockPanelGradient7 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
-        Dim TabGradient15 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim DockPaneStripSkin3 As WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin = New WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin()
-        Dim DockPaneStripGradient3 As WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient = New WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient()
-        Dim TabGradient16 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim DockPanelGradient8 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
-        Dim TabGradient17 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim DockPaneStripToolWindowGradient3 As WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient = New WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient()
-        Dim TabGradient18 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim TabGradient19 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim DockPanelGradient9 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
-        Dim TabGradient20 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
-        Dim TabGradient21 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim DockPanelSkin1 As WeifenLuo.WinFormsUI.Docking.DockPanelSkin = New WeifenLuo.WinFormsUI.Docking.DockPanelSkin()
+        Dim AutoHideStripSkin1 As WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin = New WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin()
+        Dim DockPanelGradient1 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
+        Dim TabGradient1 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim DockPaneStripSkin1 As WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin = New WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin()
+        Dim DockPaneStripGradient1 As WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient = New WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient()
+        Dim TabGradient2 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim DockPanelGradient2 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
+        Dim TabGradient3 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim DockPaneStripToolWindowGradient1 As WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient = New WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient()
+        Dim TabGradient4 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim TabGradient5 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim DockPanelGradient3 As WeifenLuo.WinFormsUI.Docking.DockPanelGradient = New WeifenLuo.WinFormsUI.Docking.DockPanelGradient()
+        Dim TabGradient6 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
+        Dim TabGradient7 As WeifenLuo.WinFormsUI.Docking.TabGradient = New WeifenLuo.WinFormsUI.Docking.TabGradient()
         Me.DockPanel1 = New WeifenLuo.WinFormsUI.Docking.DockPanel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -62,6 +62,7 @@ Partial Class frmMainFormDocking
         Me.DeletePersonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -75,52 +76,52 @@ Partial Class frmMainFormDocking
         Me.DockPanel1.Name = "DockPanel1"
         Me.DockPanel1.RightToLeftLayout = True
         Me.DockPanel1.Size = New System.Drawing.Size(284, 237)
-        DockPanelGradient7.EndColor = System.Drawing.SystemColors.ControlLight
-        DockPanelGradient7.StartColor = System.Drawing.SystemColors.ControlLight
-        AutoHideStripSkin3.DockStripGradient = DockPanelGradient7
-        TabGradient15.EndColor = System.Drawing.SystemColors.Control
-        TabGradient15.StartColor = System.Drawing.SystemColors.Control
-        TabGradient15.TextColor = System.Drawing.SystemColors.ControlDarkDark
-        AutoHideStripSkin3.TabGradient = TabGradient15
-        AutoHideStripSkin3.TextFont = New System.Drawing.Font("Segoe UI", 9.0!)
-        DockPanelSkin3.AutoHideStripSkin = AutoHideStripSkin3
-        TabGradient16.EndColor = System.Drawing.SystemColors.ControlLightLight
-        TabGradient16.StartColor = System.Drawing.SystemColors.ControlLightLight
-        TabGradient16.TextColor = System.Drawing.SystemColors.ControlText
-        DockPaneStripGradient3.ActiveTabGradient = TabGradient16
-        DockPanelGradient8.EndColor = System.Drawing.SystemColors.Control
-        DockPanelGradient8.StartColor = System.Drawing.SystemColors.Control
-        DockPaneStripGradient3.DockStripGradient = DockPanelGradient8
-        TabGradient17.EndColor = System.Drawing.SystemColors.ControlLight
-        TabGradient17.StartColor = System.Drawing.SystemColors.ControlLight
-        TabGradient17.TextColor = System.Drawing.SystemColors.ControlText
-        DockPaneStripGradient3.InactiveTabGradient = TabGradient17
-        DockPaneStripSkin3.DocumentGradient = DockPaneStripGradient3
-        DockPaneStripSkin3.TextFont = New System.Drawing.Font("Segoe UI", 9.0!)
-        TabGradient18.EndColor = System.Drawing.SystemColors.ActiveCaption
-        TabGradient18.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical
-        TabGradient18.StartColor = System.Drawing.SystemColors.GradientActiveCaption
-        TabGradient18.TextColor = System.Drawing.SystemColors.ActiveCaptionText
-        DockPaneStripToolWindowGradient3.ActiveCaptionGradient = TabGradient18
-        TabGradient19.EndColor = System.Drawing.SystemColors.Control
-        TabGradient19.StartColor = System.Drawing.SystemColors.Control
-        TabGradient19.TextColor = System.Drawing.SystemColors.ControlText
-        DockPaneStripToolWindowGradient3.ActiveTabGradient = TabGradient19
-        DockPanelGradient9.EndColor = System.Drawing.SystemColors.ControlLight
-        DockPanelGradient9.StartColor = System.Drawing.SystemColors.ControlLight
-        DockPaneStripToolWindowGradient3.DockStripGradient = DockPanelGradient9
-        TabGradient20.EndColor = System.Drawing.SystemColors.InactiveCaption
-        TabGradient20.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical
-        TabGradient20.StartColor = System.Drawing.SystemColors.GradientInactiveCaption
-        TabGradient20.TextColor = System.Drawing.SystemColors.InactiveCaptionText
-        DockPaneStripToolWindowGradient3.InactiveCaptionGradient = TabGradient20
-        TabGradient21.EndColor = System.Drawing.Color.Transparent
-        TabGradient21.StartColor = System.Drawing.Color.Transparent
-        TabGradient21.TextColor = System.Drawing.SystemColors.ControlDarkDark
-        DockPaneStripToolWindowGradient3.InactiveTabGradient = TabGradient21
-        DockPaneStripSkin3.ToolWindowGradient = DockPaneStripToolWindowGradient3
-        DockPanelSkin3.DockPaneStripSkin = DockPaneStripSkin3
-        Me.DockPanel1.Skin = DockPanelSkin3
+        DockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight
+        DockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight
+        AutoHideStripSkin1.DockStripGradient = DockPanelGradient1
+        TabGradient1.EndColor = System.Drawing.SystemColors.Control
+        TabGradient1.StartColor = System.Drawing.SystemColors.Control
+        TabGradient1.TextColor = System.Drawing.SystemColors.ControlDarkDark
+        AutoHideStripSkin1.TabGradient = TabGradient1
+        AutoHideStripSkin1.TextFont = New System.Drawing.Font("Segoe UI", 9.0!)
+        DockPanelSkin1.AutoHideStripSkin = AutoHideStripSkin1
+        TabGradient2.EndColor = System.Drawing.SystemColors.ControlLightLight
+        TabGradient2.StartColor = System.Drawing.SystemColors.ControlLightLight
+        TabGradient2.TextColor = System.Drawing.SystemColors.ControlText
+        DockPaneStripGradient1.ActiveTabGradient = TabGradient2
+        DockPanelGradient2.EndColor = System.Drawing.SystemColors.Control
+        DockPanelGradient2.StartColor = System.Drawing.SystemColors.Control
+        DockPaneStripGradient1.DockStripGradient = DockPanelGradient2
+        TabGradient3.EndColor = System.Drawing.SystemColors.ControlLight
+        TabGradient3.StartColor = System.Drawing.SystemColors.ControlLight
+        TabGradient3.TextColor = System.Drawing.SystemColors.ControlText
+        DockPaneStripGradient1.InactiveTabGradient = TabGradient3
+        DockPaneStripSkin1.DocumentGradient = DockPaneStripGradient1
+        DockPaneStripSkin1.TextFont = New System.Drawing.Font("Segoe UI", 9.0!)
+        TabGradient4.EndColor = System.Drawing.SystemColors.ActiveCaption
+        TabGradient4.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical
+        TabGradient4.StartColor = System.Drawing.SystemColors.GradientActiveCaption
+        TabGradient4.TextColor = System.Drawing.SystemColors.ActiveCaptionText
+        DockPaneStripToolWindowGradient1.ActiveCaptionGradient = TabGradient4
+        TabGradient5.EndColor = System.Drawing.SystemColors.Control
+        TabGradient5.StartColor = System.Drawing.SystemColors.Control
+        TabGradient5.TextColor = System.Drawing.SystemColors.ControlText
+        DockPaneStripToolWindowGradient1.ActiveTabGradient = TabGradient5
+        DockPanelGradient3.EndColor = System.Drawing.SystemColors.ControlLight
+        DockPanelGradient3.StartColor = System.Drawing.SystemColors.ControlLight
+        DockPaneStripToolWindowGradient1.DockStripGradient = DockPanelGradient3
+        TabGradient6.EndColor = System.Drawing.SystemColors.InactiveCaption
+        TabGradient6.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical
+        TabGradient6.StartColor = System.Drawing.SystemColors.GradientInactiveCaption
+        TabGradient6.TextColor = System.Drawing.SystemColors.InactiveCaptionText
+        DockPaneStripToolWindowGradient1.InactiveCaptionGradient = TabGradient6
+        TabGradient7.EndColor = System.Drawing.Color.Transparent
+        TabGradient7.StartColor = System.Drawing.Color.Transparent
+        TabGradient7.TextColor = System.Drawing.SystemColors.ControlDarkDark
+        DockPaneStripToolWindowGradient1.InactiveTabGradient = TabGradient7
+        DockPaneStripSkin1.ToolWindowGradient = DockPaneStripToolWindowGradient1
+        DockPanelSkin1.DockPaneStripSkin = DockPaneStripSkin1
+        Me.DockPanel1.Skin = DockPanelSkin1
         Me.DockPanel1.TabIndex = 1
         '
         'MenuStrip1
@@ -142,13 +143,13 @@ Partial Class frmMainFormDocking
         'NewToolStripMenuItem
         '
         Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
-        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.NewToolStripMenuItem.Text = "&New"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'EditToolStripMenuItem
@@ -311,4 +312,5 @@ Partial Class frmMainFormDocking
     Friend WithEvents AttachChildToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AncestorViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FamilyViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SaveFileDialog1 As System.Windows.Forms.SaveFileDialog
 End Class
