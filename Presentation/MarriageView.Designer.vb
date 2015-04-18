@@ -33,6 +33,8 @@ Partial Class frmMarriageView
         Me.lvMarriages.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chSpouse, Me.chDate, Me.chLocation})
         Me.lvMarriages.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lvMarriages.FullRowSelect = True
+        Me.lvMarriages.GridLines = True
+        Me.lvMarriages.HideSelection = False
         Me.lvMarriages.Location = New System.Drawing.Point(0, 0)
         Me.lvMarriages.MultiSelect = False
         Me.lvMarriages.Name = "lvMarriages"

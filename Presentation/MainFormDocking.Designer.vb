@@ -63,13 +63,14 @@ Partial Class frmMainFormDocking
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DockPanel1
         '
         Me.DockPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DockPanel1.DockBottomPortion = 0.1R
+        Me.DockPanel1.DockBottomPortion = 0.5R
         Me.DockPanel1.DockLeftPortion = 0.2R
         Me.DockPanel1.DockRightPortion = 0.2R
         Me.DockPanel1.Location = New System.Drawing.Point(0, 24)
@@ -135,7 +136,7 @@ Partial Class frmMainFormDocking
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.OpenToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "&File"
@@ -270,6 +271,12 @@ Partial Class frmMainFormDocking
         '
         Me.Timer1.Interval = 60000
         '
+        'SaveToolStripMenuItem
+        '
+        Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SaveToolStripMenuItem.Text = "Save"
+        '
         'frmMainFormDocking
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -313,4 +320,5 @@ Partial Class frmMainFormDocking
     Friend WithEvents AncestorViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FamilyViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveFileDialog1 As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents SaveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

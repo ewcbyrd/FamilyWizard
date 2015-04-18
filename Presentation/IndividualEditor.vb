@@ -106,6 +106,8 @@ Public Class frmIndividualEditor
 
         Spouse = Nothing
 
+        FamilyView.lvChildren.Items.Clear()
+
         LoadIndividualData()
         AncestorView.AncestorList = ps.GetAncestors(FocusPerson.Id)
         FamilyView.LoadFamilyView()

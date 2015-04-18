@@ -12,6 +12,7 @@ Public Class frmMainFormDocking
     Private Property AncestorView As frmAncestorView
     Private Property IndividualEditor As frmIndividualEditor
     Private Property MarriageView As frmMarriageView
+    Private Property EventsView As frmEventsView
 
     Private Shared Property DataFile As DataFileDescriptor
 
@@ -23,11 +24,11 @@ Public Class frmMainFormDocking
         ' Add any initialization after the InitializeComponent() call.
         AncestorView = New frmAncestorView
 
-        AncestorView.Show(DockPanel1, DockState.Document)
+        AncestorView.Show(DockPanel1, DockState.DockBottom)
 
         FamilyView = New frmFamilyView
 
-        FamilyView.Show(AncestorView.Pane, DockAlignment.Bottom, 0.66)
+        FamilyView.Show(DockPanel1, DockState.Document)
 
         IndividualEditor = New frmIndividualEditor
 
@@ -38,7 +39,10 @@ Public Class frmMainFormDocking
         PersonIndex.Show(DockPanel1, DockState.DockLeft)
 
         MarriageView = New frmMarriageView
-        MarriageView.Show(FamilyView.Pane, DockAlignment.Bottom, 0.25)
+        MarriageView.Show(DockPanel1, DockState.Document)
+
+        EventsView = New frmEventsView
+        EventsView.Show(DockPanel1, DockState.Document)
 
         PersonIndex.AncestorView = AncestorView
         PersonIndex.IndividualEditor = IndividualEditor
@@ -94,21 +98,11 @@ Public Class frmMainFormDocking
 
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick, Me.FormClosed
-
-        Dim filePrefix As String
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick, Me.FormClosed, SaveToolStripMenuItem.Click
 
         If DataFile IsNot Nothing Then
 
-            filePrefix = DataFile.PathName & "\" & DataFile.FileName & "_"
-            DataFile.CurrentPersonIndex = My.Settings.CurrentPersonIndex
-            DataFile.CurrentEventIndex = My.Settings.CurrentEventIndex
-            DataFile.CurrentMarriageIndex = My.Settings.CurrentMarriageIndex
-
-            ps.WritePersonFile(filePrefix & "persons.dat")
-            es.WriteFile(filePrefix & "events.dat")
-            ps.WriteMarriageFile(filePrefix & "marriages.dat")
-            dfs.Write(DataFile)
+            SaveDataFiles()
 
         End If
 
@@ -508,6 +502,22 @@ Public Class frmMainFormDocking
             End Try
 
         End If
+
+    End Sub
+
+    Private Sub SaveDataFiles()
+
+        Dim filePrefix As String = ""
+
+        filePrefix = DataFile.PathName & "\" & DataFile.FileName & "_"
+        DataFile.CurrentPersonIndex = My.Settings.CurrentPersonIndex
+        DataFile.CurrentEventIndex = My.Settings.CurrentEventIndex
+        DataFile.CurrentMarriageIndex = My.Settings.CurrentMarriageIndex
+
+        ps.WritePersonFile(filePrefix & "persons.dat")
+        es.WriteFile(filePrefix & "events.dat")
+        ps.WriteMarriageFile(filePrefix & "marriages.dat")
+        dfs.Write(DataFile)
 
     End Sub
 
