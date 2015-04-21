@@ -60,6 +60,8 @@ Public Class frmMainFormDocking
         MarriageView.IndividualEditor = IndividualEditor
         MarriageView.FamilyView = FamilyView
 
+        EventsView.IndividualEditor = IndividualEditor
+
     End Sub
 
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click

@@ -129,6 +129,12 @@
     <Compile Include="Presentation\AncestorView.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentation\EventEditor.Designer.vb">
+      <DependentUpon>EventEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\EventEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentation\EventsView.Designer.vb">
       <DependentUpon>EventsView.vb</DependentUpon>
     </Compile>
@@ -208,6 +214,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Presentation\AncestorView.resx">
       <DependentUpon>AncestorView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\EventEditor.resx">
+      <DependentUpon>EventEditor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\EventsView.resx">
       <DependentUpon>EventsView.vb</DependentUpon>
