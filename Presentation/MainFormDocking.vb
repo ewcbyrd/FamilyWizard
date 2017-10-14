@@ -72,7 +72,10 @@ Public Class frmMainFormDocking
 
             DataFile = dfs.Read(OpenFileDialog1.FileName)
 
-            Dim prefix As String = DataFile.PathName & "\" & DataFile.FileName & "_"
+            'Dim prefix As String = DataFile.PathName & "\" & DataFile.FileName & "_"
+            Dim prefix As String = Replace(OpenFileDialog1.FileName, ".fwz", "") & "_"
+
+            DataFile.PathName = Replace(OpenFileDialog1.FileName, DataFile.FileName + ".fwz", "")
 
             Me.Text = "Family Wizard - " & DataFile.FileName
 
